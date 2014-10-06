@@ -20,6 +20,7 @@
                         <td class="size">{{email}}</td>
                         <td class="size">{{sharing_name}}<td>
                         <input type="hidden" value="{{name}},{{email}}" class="filter_field" >
+                        <input type="checkbox" id="merge_user">
                     </tr>
                 {{/users}}
             {{/userlist}}
