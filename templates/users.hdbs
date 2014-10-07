@@ -1,31 +1,52 @@
-<input class="search" type="text" id="filter_search" placeholder="Filter by name or email">
-
 <div id="maintemplate" class="well well-small">
     <table id="agent_list" class="table">
         <thead>
             <tr>
-                <th class="srt_header"><span>Name</span></th>
+                                <th class="srt_header"><span>Name</span></th>
                 <th class="srt_header"><span>Email</span></th>
                 <th class="srt_header"><span>Spoke</span></th>
             </tr>
         </thead>
         <tbody>
             {{#userlist}}
+
                 <th class="size"></th>
                 <th class="size">Duplicate Name: {{name}}</th>
-                <th class="size"></th>
+                <th class="size">
+                    {{#if merge}}
+                        <button class="btn merge-cancel navbar" value="{{@index}}">Cancel</button>
+                    {{else}}
+                        <button class="btn status-toggle navbar" value="{{@index}}">Merge Users</button>
+                    {{/if}}
+                </th>
+            {{#if merge}}
+                <th class="srt_header"><span>Merge user?</span></th>
+                {{/if}}                            
+                
                 {{#users}}
-                    <tr id="{{id}}">
-                        <td class="size"><a href="#/users/{{id}}">{{name}}</a></td>
+                    <tr id="{{id}}" class="">
+                        <td class="size">
+                        <a href="#/users/{{id}}">{{name}}</a>
+                        
+                        {{#if ../merge}} 
+                            <button class="btn merge-into navbar" id="{{id}}" value="{{duplicate_index}}">Merge Selected Here</button>
+                        {{/if}}
+
+                        {{#if selected}} 
+                         Hi bobby
+                        {{/if}}
+                        
+                        </td>
                         <td class="size">{{email}}</td>
                         <td class="size">{{sharing_name}}<td>
-                        <input type="hidden" value="{{name}},{{email}}" class="filter_field" >
-                        <input type="checkbox" id="merge_user">
+                        {{#if ../merge}}
+                        <td class="merge-select-{{../merge}}" id="{{duplicate_index}}">
+                            <input type="checkbox" class="merge_user_{{duplicate_index}} merge-checkbox" id="{{id}}" value="{{@index}}">
+                        </td>
+                        {{/if}}
                     </tr>
                 {{/users}}
             {{/userlist}}
         </tbody>
     </table>
 </div>
-
-
