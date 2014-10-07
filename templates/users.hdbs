@@ -1,49 +1,42 @@
 <div id="maintemplate" class="well well-small">
-    <table id="agent_list" class="table">
+    <table id="agent_list" class="table duplicates">
         <thead>
             <tr>
-                                <th class="srt_header"><span>Name</span></th>
-                <th class="srt_header"><span>Email</span></th>
-                <th class="srt_header"><span>Spoke</span></th>
+                <th class="srt_header"><span>User</span></th>
+                <th class="srt_header"><span>User Location</span></th> 
             </tr>
         </thead>
         <tbody>
             {{#userlist}}
 
-                <th class="size"></th>
                 <th class="size">Duplicate Name: {{name}}</th>
                 <th class="size">
                     {{#if merge}}
-                        <button class="btn merge-cancel navbar" value="{{@index}}">Cancel</button>
+                        <button class="btn merge-cancel navbar" value="{{@index}}">Cancel Merge</button>
                     {{else}}
-                        <button class="btn status-toggle navbar" value="{{@index}}">Merge Users</button>
+                        <button class="btn status-toggle navbar" value="{{@index}}">Select Users</button>
                     {{/if}}
                 </th>
-            {{#if merge}}
-                <th class="srt_header"><span>Merge user?</span></th>
-                {{/if}}                            
                 
                 {{#users}}
-                    <tr id="{{id}}" class="">
+                    <tr id="{{id}}" class="user">
                         <td class="size">
-                        <a href="#/users/{{id}}">{{name}}</a>
-                        
-                        {{#if ../merge}} 
-                            <button class="btn merge-into navbar" id="{{id}}" value="{{duplicate_index}}">Merge Selected Here</button>
-                        {{/if}}
-
-                        {{#if selected}} 
-                         Hi bobby
-                        {{/if}}
-                        
-                        </td>
-                        <td class="size">{{email}}</td>
-                        <td class="size">{{sharing_name}}<td>
                         {{#if ../merge}}
-                        <td class="merge-select-{{../merge}}" id="{{duplicate_index}}">
-                            <input type="checkbox" class="merge_user_{{duplicate_index}} merge-checkbox" id="{{id}}" value="{{@index}}">
-                        </td>
+                            <button class="btn merge-into navbar" id="{{id}}" value="{{duplicate_index}}">Merge Selected Here</button>                        
+                        {{else}}                        
+                        <a href="#/users/{{id}}">User Profile</a>
                         {{/if}}
+                        <br/>
+                        <span>{{email}}</span>
+                        </td>
+                        
+                        <td id="{{duplicate_index}}">
+                        {{#if ../merge}}
+                            <input type="checkbox" class="merge_user_{{duplicate_index}} merge-checkbox" id="{{id}}" value="{{@index}}">
+                        {{/if}}
+                        {{sharing_name}}                        
+                        </td>
+                        
                     </tr>
                 {{/users}}
             {{/userlist}}
