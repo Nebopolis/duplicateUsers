@@ -44,7 +44,6 @@
                     })
                 };
             },
-
         },
 
         getSelected: function(index) {
