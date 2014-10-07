@@ -49,7 +49,7 @@
 
         getSelected: function(index) {
             var filter = "input.merge_user_" + index + ":checked";   
-            checked = this.$(filter);
+            var checked = this.$(filter);
             for(var i = 0; i < checked.length; i++) {
             }            
             return checked;            
